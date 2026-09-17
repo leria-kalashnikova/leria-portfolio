@@ -17,6 +17,8 @@ pnpm build
 
 The static client is generated in `dist/client`.
 
+For OpenAI Sites packaging only, use `pnpm run build:sites`.
+
 ## GitHub Pages
 
 Push the repository to the `main` branch, then enable **Settings → Pages → Source → GitHub Actions**. The included workflow builds and publishes `dist/client`. The app uses only repository-local assets and fonts.
