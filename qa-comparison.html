@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Design QA comparison</title>
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: #17181b;
+        color: #fff;
+        font: 600 16px/24px Arial, sans-serif;
+      }
+      main {
+        display: grid;
+        width: 1440px;
+        grid-template-columns: repeat(2, 696px);
+        gap: 16px;
+        padding: 16px;
+      }
+      figure { margin: 0; }
+      figcaption { height: 34px; }
+      .stage {
+        position: relative;
+        width: 696px;
+        height: 789.37px;
+        overflow: hidden;
+        background: #fcfcfb;
+      }
+      .stage > img {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      iframe {
+        width: 1440px;
+        height: 1633px;
+        border: 0;
+        pointer-events: none;
+        transform: scale(0.4833333333);
+        transform-origin: 0 0;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <figure>
+        <figcaption>Figma source</figcaption>
+        <div class="stage"><img src="/docs/figma-reference.png" alt="Figma source" /></div>
+      </figure>
+      <figure>
+        <figcaption>Implementation</figcaption>
+        <div class="stage"><iframe src="/" title="Implementation"></iframe></div>
+      </figure>
+    </main>
+  </body>
+</html>
