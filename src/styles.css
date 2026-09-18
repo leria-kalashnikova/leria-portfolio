@@ -153,6 +153,20 @@ button, a { -webkit-tap-highlight-color: transparent; }
 
 .project { min-width: 0; }
 
+.project-link {
+  display: block;
+  color: inherit;
+  cursor: pointer;
+}
+
+.project-link .project-art { transition: transform 220ms ease, opacity 220ms ease; }
+.project-link:hover .project-art { transform: translateY(-4px); }
+.project-link:focus-visible { outline: none; }
+.project-link:focus-visible .project-art {
+  outline: 2px solid #1d1f27;
+  outline-offset: 5px;
+}
+
 .project-art {
   position: relative;
   width: 100%;
@@ -322,6 +336,275 @@ footer {
   white-space: nowrap;
 }
 
+.rho-case-overlay {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: #fcfcfb;
+  animation: rho-case-in 220ms ease-out both;
+}
+
+@keyframes rho-case-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.rho-case-close {
+  position: fixed;
+  z-index: 1002;
+  top: 28px;
+  right: 40px;
+  border: 0;
+  padding: 8px 0;
+  color: #1d1f27;
+  background: transparent;
+  font: inherit;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 22px;
+  cursor: pointer;
+  opacity: 0.55;
+  transition: opacity 160ms ease;
+}
+
+.rho-case-close:hover { opacity: 1; }
+.rho-case-close:focus-visible {
+  outline: 2px solid #1d1f27;
+  outline-offset: 5px;
+  opacity: 1;
+}
+
+.rho-case-page {
+  position: relative;
+  width: 100%;
+  min-height: 2680px;
+  overflow: hidden;
+  color: #1d1f27;
+  background: #fcfcfb;
+  font-family: "Inter", Arial, sans-serif;
+  font-weight: 400;
+}
+
+.rho-case-header {
+  position: absolute;
+  top: 84px;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  transform: translateX(-50%);
+}
+
+.rho-case-logo {
+  display: block;
+  width: 121px;
+  height: 121px;
+  border-radius: 28.359px;
+  object-fit: cover;
+}
+
+.rho-case-title-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+}
+
+.rho-case-title-group h1,
+.rho-case-title-group p { margin: 0; }
+
+.rho-case-title-group h1 {
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 68px;
+  letter-spacing: -2px;
+}
+
+.rho-case-title-group p {
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: -0.2px;
+}
+
+.rho-case-meta {
+  position: absolute;
+  top: 469px;
+  left: 40px;
+  display: flex;
+  width: calc(100% - 80px);
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.rho-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.rho-detail p { margin: 0; }
+
+.rho-detail-label {
+  color: #74767d;
+  font-size: 17px;
+  line-height: 22px;
+}
+
+.rho-detail-value {
+  font-size: 19px;
+  line-height: 24px;
+  letter-spacing: -0.2px;
+  white-space: nowrap;
+}
+
+.rho-tags { width: 440px; }
+
+.rho-meta-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 64px;
+}
+
+.rho-visual {
+  position: absolute;
+  top: 583px;
+  left: 50%;
+  width: min(902px, calc(100% - 48px));
+  aspect-ratio: 902 / 606;
+  overflow: hidden;
+  border-radius: 46px;
+  transform: translateX(-50%);
+}
+
+.rho-hero-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.rho-tldr {
+  position: absolute;
+  top: 1301px;
+  left: 50%;
+  display: flex;
+  width: 596px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  transform: translateX(-50%);
+}
+
+.rho-tldr h2,
+.rho-tldr p,
+.rho-tldr ul { margin: 0; }
+
+.rho-tldr h2 {
+  width: 100%;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -2px;
+}
+
+.rho-tldr-copy {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  font-size: 22px;
+  line-height: 1.4;
+  letter-spacing: -1.144px;
+}
+
+.rho-owned {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 21px;
+}
+
+.rho-owned > p { line-height: 1.3; }
+
+.rho-owned ul {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 25px;
+  padding-left: 33px;
+  line-height: 1.3;
+}
+
+.rho-owned li { padding-left: 0; }
+
+.rho-screens {
+  position: absolute;
+  top: 2046px;
+  left: 50%;
+  display: flex;
+  width: 996px;
+  align-items: flex-start;
+  gap: 76px;
+  transform: translateX(-50%);
+}
+
+.rho-phone {
+  position: relative;
+  flex: 0 0 281px;
+  width: 281px;
+  height: 576px;
+  margin: 0;
+}
+
+.rho-phone.progress-screen,
+.rho-phone.program-screen { margin-top: 12px; }
+
+.rho-phone-device {
+  position: relative;
+  width: 281px;
+  height: 554px;
+}
+
+.rho-phone-content {
+  position: absolute;
+  top: 16px;
+  left: 20px;
+  width: 242px;
+  height: 526px;
+  border-radius: 35px;
+  object-fit: cover;
+}
+
+.rho-phone-frame {
+  position: absolute;
+  top: 2px;
+  left: 5.5px;
+  width: 270px;
+  height: 552px;
+  object-fit: fill;
+  pointer-events: none;
+}
+
+.rho-phone figcaption {
+  position: absolute;
+  top: 560px;
+  left: 20px;
+  width: 241px;
+  color: #74767d;
+  font-size: 17px;
+  line-height: 22px;
+  text-align: center;
+}
+
 @media (max-width: 1000px) {
   .portfolio-page { min-height: auto; padding: 24px 24px 32px; overflow: visible; }
   .site-header, .hero, .projects, .about, .about h2, .about p, footer {
@@ -343,6 +626,78 @@ footer {
   .about h2 { grid-column: 1 / 7; font-size: clamp(48px, 7vw, 60px); line-height: 1.05; }
   .about p { grid-column: 5 / 9; margin-top: 128px; }
   footer { margin-top: 144px; }
+
+  .rho-case-close {
+    top: 16px;
+    right: 24px;
+    padding: 8px 10px;
+    border-radius: 999px;
+    background: rgba(252, 252, 251, 0.88);
+    backdrop-filter: blur(12px);
+  }
+
+  .rho-case-page {
+    min-height: auto;
+    padding: 64px 24px 80px;
+    overflow: hidden;
+  }
+
+  .rho-case-header,
+  .rho-case-meta,
+  .rho-tldr,
+  .rho-screens {
+    position: static;
+    width: auto;
+    transform: none;
+  }
+
+  .rho-case-header { gap: 24px; }
+  .rho-case-logo { width: 104px; height: 104px; border-radius: 24px; }
+  .rho-case-title-group h1 { font-size: 56px; line-height: 60px; }
+
+  .rho-case-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    margin-top: 112px;
+  }
+
+  .rho-tags { width: auto; }
+
+  .rho-meta-secondary {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  .rho-detail-value { white-space: normal; }
+
+  .rho-visual {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    margin: 64px auto 0;
+    transform: none;
+  }
+
+  .rho-tldr {
+    width: min(596px, 100%);
+    margin: 88px auto 0;
+  }
+
+  .rho-screens {
+    display: flex;
+    width: calc(100% + 48px);
+    margin: 112px -24px 0;
+    padding: 0 24px 24px;
+    gap: 40px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+
+  .rho-phone { scroll-snap-align: center; }
 }
 
 @media (max-width: 680px) {
@@ -358,9 +713,34 @@ footer {
   .about h2 { font-size: 42px; line-height: 44px; letter-spacing: -1.4px; }
   .about p { width: 100%; margin-top: 88px; font-size: 18px; line-height: 24px; }
   footer { flex-wrap: wrap; gap: 16px 24px; margin-top: 120px; font-size: 15px; line-height: 20px; white-space: normal; }
+
+  .rho-case-close { right: 16px; }
+  .rho-case-page { padding: 56px 20px 72px; }
+  .rho-case-header { gap: 20px; }
+  .rho-case-logo { width: 88px; height: 88px; border-radius: 21px; }
+  .rho-case-title-group h1 { font-size: 48px; line-height: 52px; letter-spacing: -1.6px; }
+  .rho-case-title-group p { font-size: 16px; line-height: 21px; }
+  .rho-case-meta { margin-top: 88px; }
+  .rho-meta-secondary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rho-detail-label { font-size: 15px; line-height: 20px; }
+  .rho-detail-value { font-size: 17px; line-height: 22px; }
+  .rho-visual { width: calc(100% + 16px); margin-left: -8px; border-radius: 28px; }
+  .rho-tldr { margin-top: 72px; }
+  .rho-tldr h2 { font-size: 25px; letter-spacing: -1.4px; }
+  .rho-tldr-copy { font-size: 19px; line-height: 1.4; letter-spacing: -0.7px; }
+  .rho-owned { gap: 18px; }
+  .rho-owned ul { gap: 21px; padding-left: 26px; }
+  .rho-screens {
+    width: calc(100% + 40px);
+    margin: 88px -20px 0;
+    padding-right: calc((100vw - 281px) / 2);
+    padding-left: calc((100vw - 281px) / 2);
+    gap: 28px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   * { transition: none !important; }
+  .rho-case-overlay { animation: none; }
 }

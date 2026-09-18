@@ -64,4 +64,58 @@ None for the selected desktop frame. Mobile behavior is responsive by implementa
 
 No P3 changes were applied because the user requested no visual changes.
 
+## Rho case-study popup QA
+
+- Source visual truth: `docs/qa/rho-figma-reference.png` — Figma file `Portfolio-WebFlow`, node `851:14271` (`Rho Main`).
+- Implementation: `http://localhost:4173/?rho=1`, opened as the Rho full-screen modal from the main-page card.
+- Comparison evidence: `qa-rho-comparison.html` renders the 1440 × 2680 Figma export and a live 1440 × 2680 implementation iframe side by side.
+- Comparison viewport: 1280 × 720 CSS px at device pixel ratio 2; both 1440 × 2680 surfaces are normalized to the same `0.42` scale.
+- State: Rho popup open at scroll top, plus focused checks of the hero, TLDR, application screens, and close interactions.
+
+### Full-view comparison evidence
+
+The side-by-side comparison aligned the 84 px header start, centered 121 px logo, title/subtitle group, 469 px metadata row, 583 px hero start, 1301 px TLDR start, and 2046 px application-screen row. The centered 596 px copy column and three 281 px phone compositions preserve the source proportions and wrapping.
+
+### Focused comparison evidence
+
+- Hero: node `851:14632` is used as one direct 902 × 606 Figma PNG export. The portrait, glass frame, scan label, insight chips, connectors, blur, and bottom fade are all contained in that single image rather than reconstructed as separate HTML layers.
+- TLDR: Inter Regular, 28 px heading, 22 px body, 1.4 paragraph leading, 1.3 list leading, 16/21/25 px internal gaps, and bullet wrapping match the source.
+- Application screens: direct Figma screen and device-frame assets are layered at 242 × 526 and 270 × 552 inside 281 × 554 wrappers. Captions use 17/22 Inter and align at the source baselines.
+
+### Required fidelity surfaces
+
+- Fonts and typography: Inter is bundled locally. The 64/68 title with -2 px tracking, 19/24 subtitle and metadata values, 17/22 labels, and TLDR hierarchy match the Figma properties. The small scan chips use the system SF Pro stack with Inter fallback, matching the source UI language without adding an unlicensed webfont.
+- Spacing and layout rhythm: desktop positions, 40 px outer margins, central widths, vertical section coordinates, phone spacing, and rounded corners match the 1440 px Figma frame. Responsive rules preserve the hierarchy below 1000 px.
+- Colors and visual tokens: `#fcfcfb`, `#1d1f27`, `#74767d`, blue UI accents, translucency, shadows, and glass treatments match the source.
+- Image quality and asset fidelity: the logo, complete hero composition, three app screens, and two device frames are direct Figma exports committed under `public/assets/rho-case/`. No placeholders or handcrafted image substitutes remain.
+- Copy and content: title, metadata, TLDR, bullet list, and screen captions match node `851:14271`.
+
+### Interaction and accessibility checks
+
+- Rho card opens the full-screen modal.
+- Background scrolling is locked while open.
+- Close button and Escape both close the modal after scrolling or clicking content.
+- Focus moves to Close on open and returns to the Rho card on close.
+- Dialog name and modal semantics are exposed to the accessibility tree.
+- Browser console: no errors or warnings; only Vite connection and React development information.
+
+### Rho comparison history
+
+#### Iteration 1
+
+- [P2] The transparent portrait asset produced a visible filtered edge at the bottom of the hero crop.
+  - Fix: strengthened the source fade, clipped the outer portrait, and added a solid bottom mask outside the glass frame.
+- [P2] Escape relied on focus remaining inside the overlay.
+  - Fix: moved Escape handling to a document-level listener and verified focus restoration.
+
+#### Iteration 2
+
+- Post-fix side-by-side comparison found no actionable P0/P1/P2 differences.
+- The fixed `Close` control is an intentional P3 deviation from the static Figma frame because a full-screen modal needs an explicit exit; it stays visually quiet and outside the core composition.
+
+#### Iteration 3
+
+- Replaced the decomposed hero implementation with one direct 902 × 606 export of Figma node `851:14632`, as requested.
+- Verified that the composite image keeps the original 902:606 ratio, 46 px desktop radius, source crop, and responsive scaling without splitting any visual element into HTML layers.
+
 final result: passed
