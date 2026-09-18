@@ -205,7 +205,7 @@ export function App() {
           <section className="hero" aria-labelledby="hero-title">
             <h1 id="hero-title">Creativity<br />focused on clarity</h1>
             <a className="talk-link" href="mailto:leria.kalashnikova@gmail.com">
-              <span>Let’s talk</span>
+              <span>Let’s create</span>
               <img src="assets/arrow-up-right.svg" alt="" />
             </a>
           </section>
