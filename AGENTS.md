@@ -11,5 +11,6 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 ## Visual source
 
 - Source of truth: Figma file `Portfolio-WebFlow`, node `826:6063` (`Desktop Main`).
-- Rho case-study popup source of truth: Figma node `851:14271` (`Rho Main`). Open it from the Rho project card as a full-screen modal and preserve its Inter typography, 40px desktop margins, centered 596px TLDR column, and original Figma imagery.
+- Rho case-study popup source of truth: Figma node `851:14271` (`Rho Main`). Open it from the Rho project card as a full-screen modal and preserve its Inter typography, 40px desktop margins, centered 596px TLDR column, and original Figma imagery. The current hero node `851:14632` is 672 × 606 CSS px and should use a whole-image 4× export at 2688 × 2424 px.
+- Loomy case-study popup source of truth: Figma node `859:14918` (`Loomy Main`). Open it from the Loomy project card as a full-screen modal. Its logo, 672 × 606 hero, and three phone compositions are direct, whole-node Figma image exports rather than reconstructed layers.
 - Preserve the visual design exactly. Do not introduce new accent fonts, colors, sections, or decorative treatments unless the user explicitly changes the brief.

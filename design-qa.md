@@ -66,7 +66,7 @@ No P3 changes were applied because the user requested no visual changes.
 
 ## Rho case-study popup QA
 
-- Source visual truth: `docs/qa/rho-figma-reference.png` — Figma file `Portfolio-WebFlow`, node `851:14271` (`Rho Main`).
+- Source visual truth: Figma file `Portfolio-WebFlow`, node `851:14271` (`Rho Main`). The saved `docs/qa/rho-figma-reference.png` predates the latest hero resize, so it is retained only as historical comparison evidence.
 - Implementation: `http://localhost:4173/?rho=1`, opened as the Rho full-screen modal from the main-page card.
 - Comparison evidence: `qa-rho-comparison.html` renders the 1440 × 2680 Figma export and a live 1440 × 2680 implementation iframe side by side.
 - Comparison viewport: 1280 × 720 CSS px at device pixel ratio 2; both 1440 × 2680 surfaces are normalized to the same `0.42` scale.
@@ -78,7 +78,7 @@ The side-by-side comparison aligned the 84 px header start, centered 121 px logo
 
 ### Focused comparison evidence
 
-- Hero: node `851:14632` is used as one direct 902 × 606 Figma PNG export. The portrait, glass frame, scan label, insight chips, connectors, blur, and bottom fade are all contained in that single image rather than reconstructed as separate HTML layers.
+- Hero: node `851:14632` is now rendered at its current Figma size of 672 × 606 CSS px from one direct 4× (2688 × 2424 px) Figma PNG export. The portrait, glass frame, scan label, insight chips, connectors, blur, and bottom fade are all contained in that single image rather than reconstructed as separate HTML layers.
 - TLDR: Inter Regular, 28 px heading, 22 px body, 1.4 paragraph leading, 1.3 list leading, 16/21/25 px internal gaps, and bullet wrapping match the source.
 - Application screens: direct Figma screen and device-frame assets are layered at 242 × 526 and 270 × 552 inside 281 × 554 wrappers. Captions use 17/22 Inter and align at the source baselines.
 
@@ -118,4 +118,67 @@ The side-by-side comparison aligned the 84 px header start, centered 121 px logo
 - Replaced the decomposed hero implementation with one direct 902 × 606 export of Figma node `851:14632`, as requested.
 - Verified that the composite image keeps the original 902:606 ratio, 46 px desktop radius, source crop, and responsive scaling without splitting any visual element into HTML layers.
 
-final result: passed
+#### Iteration 4
+
+- Rechecked the live Figma hero node: its current dimensions are 672 × 606 CSS px at x 384, y 583. Updated the site to that width and ratio.
+- Replaced the 1× hero with the genuine existing 4× Figma export (`2688 × 2424` pixels). The old full-page reference image and earlier comparison notes reflect the previous Figma state and should not be treated as verification of this newer hero width.
+- Other active Rho case-study rasters are already at or above 4× their rendered size. Homepage cards and the Loomy case-study raster exports remain 1× because Figma's export tool reached the account's call limit before those source nodes could be re-exported. No upscaled 1× files have been relabelled as source 4× exports.
+
+## Loomy case-study popup QA
+
+- Source visual truth: `docs/qa/loomy-figma-reference.png`, exported from Figma node `859:14918` (`Loomy Main`). Source: 1440 × 2716 px at 1×.
+- Implementation: `http://localhost:4173/?loomy=1`. The in-app browser rendered the page and `qa-loomy-comparison.html` displayed the live 1440 × 2716 implementation beside the source at the same 0.42 scale. That side-by-side browser capture is the implementation screenshot evidence; it was not saved as a separate PNG.
+- Comparison viewport/state: 1440 × 2716 CSS px in the embedded implementation, Loomy popup open at scroll top. Source and implementation have matching CSS/pixel dimensions at 1× before equal scaling. Mobile was checked in `qa-loomy-mobile.html` at a 390 × 844 CSS px iframe viewport.
+
+### Findings
+
+No actionable P0/P1/P2 visual or interaction differences remain. The fixed Close control is an intentional minor addition to the static Figma design so the popup has a visible exit.
+
+### Full-view and focused comparison evidence
+
+- Full-view: centered icon/title, 469 px metadata row, 583 px hero start, centered 596 px TLDR column at 1301 px, and the three 281 px phone compositions at 2082/2094 px align with the source.
+- Focused hero: a single direct 672 × 606 PNG export of node `859:14939` preserves the phone, figure, stickers, text artwork, crop, and 46 px frame radius without HTML reconstruction.
+- Focused screens: AI Assistant, Home Screen, and Editor are direct whole-node Figma exports at 281 × 554, 281 × 554, and 280 × 554. Their captions align beneath the source compositions.
+- Mobile: the hero scales without cropping, the metadata and TLDR remain readable, and the screen gallery can be browsed horizontally.
+
+### Required fidelity surfaces
+
+- Fonts and typography: bundled Inter preserves the 64/68 title, 19/24 subtitle and metadata, 28 px TLDR heading, 22 px body copy, and 17/22 captions. The source uses Poppins for the small Rate value; the implementation uses Inter as a visually close fallback (P3).
+- Spacing and layout rhythm: 40 px desktop margins, 32 px header gap, 672 × 606 hero, 596 px TLDR width, 16/21/25 px TLDR gaps, and 76 px phone gaps follow Figma.
+- Colors and visual tokens: `#fcfcfb` background, `#1d1f27` primary text, and `#74767d` secondary text match the shared case-study palette.
+- Image quality and asset fidelity: logo, hero, and three phone compositions are exact Figma PNG exports stored locally in `public/assets/loomy-case/`; no remote or placeholder assets are used.
+- Copy and content: title, subtitle, metadata, TLDR, all five bullets, and screen captions match node `859:14918`.
+
+### Interaction and accessibility checks
+
+- Loomy card opens a named full-screen dialog; Close and Escape close it, and focus returns to the Loomy card.
+- Background scrolling locks while the popup is open. Rho still opens and closes normally.
+- All five Loomy image assets loaded at their intended intrinsic sizes. Browser console had no warnings or errors. Production build passed.
+
+### Comparison history
+
+- Initial side-by-side comparison found no actionable P0/P1/P2 differences; no corrective visual iteration was needed.
+- Follow-up polish (P3): add a locally bundled Poppins font only if exact Rate-label typography becomes important to the final design review.
+
+## Current 4× image and Rho hero QA (2026-09-19)
+
+**Findings**
+
+- [P2] Eight displayed raster assets remain 1×. Location: the three homepage project cards and all five Loomy case-study images. Evidence: their actual pixel dimensions equal their CSS dimensions; the required 4× dimensions and Figma node IDs are listed in `README.md`. Impact: they will look softer on high-density screens and do not satisfy the requested 4× export. Fix: export those exact nodes at 4× PNG in Figma and replace the files without changing CSS sizes. Figma's MCP export access hit the account's Starter-plan call limit; the desktop export UI was unavailable for the remaining nodes.
+
+**Rho correction and verification**
+
+- Source visual truth: live Figma node `851:14632` is `672 × 606` CSS px at x `384`, y `583`; the local genuine 4× Figma source export is `public/assets/rho-case/rho-hero.png`, `2688 × 2424` pixels. The older full-frame `docs/qa/rho-figma-reference.png` is not a current source for the hero size.
+- Implementation: `http://127.0.0.1:4174/?rho=1`, viewed in the Codex in-app browser at `1280 × 720` CSS px. Browser screenshot evidence was captured in the live browser session but not persisted as a local file. The asset was opened separately at native dimensions for focused inspection; an equal-scale combined comparison capture was unavailable, so this check does not claim a fully passing visual comparison.
+- State: Rho popup open, scroll top and scrolled hero view. At desktop width, CSS renders the complete image at `672 × 606` with no reconstructed visual layers. The browser view showed the expected centered width, composition, and start coordinate; no stretching or new crop was visible.
+- Fonts/typography, colors/tokens, and copy/content are unchanged from the prior comparisons. Spacing/layout changed only at the hero width and aspect ratio; the 583 px vertical start and 46 px radius are preserved. Image quality improved from 1× to a true 4× original export.
+- Build verification: production Vite build passed; Sites packaging and all four static-worker tests passed.
+
+**Implementation checklist**
+
+- [x] Set Rho hero to its current Figma size and replace it with a genuine 4× whole-image export.
+- [x] Verify the updated page in a browser and confirm production builds.
+- [ ] Export and replace the eight remaining 1× assets listed in `README.md`.
+- [ ] Re-run a normalized visual comparison after those replacements.
+
+final result: blocked

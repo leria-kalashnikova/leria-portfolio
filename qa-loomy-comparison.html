@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loomy case-study QA comparison</title>
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: #17181b;
+        color: #fff;
+        font: 600 14px/20px Arial, sans-serif;
+      }
+      main {
+        display: grid;
+        width: 1242px;
+        grid-template-columns: repeat(2, 604.8px);
+        gap: 16px;
+        padding: 16px;
+      }
+      figure { margin: 0; }
+      figcaption { height: 30px; }
+      .stage {
+        position: relative;
+        width: 604.8px;
+        height: 1140.72px;
+        overflow: hidden;
+        background: #fcfcfb;
+      }
+      .stage > img {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      iframe {
+        width: 1440px;
+        height: 2716px;
+        border: 0;
+        pointer-events: none;
+        transform: scale(0.42);
+        transform-origin: 0 0;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <figure>
+        <figcaption>Figma source — 1440 × 2716</figcaption>
+        <div class="stage"><img src="/docs/qa/loomy-figma-reference.png" alt="Loomy Figma source" /></div>
+      </figure>
+      <figure>
+        <figcaption>Implementation — 1440 × 2716</figcaption>
+        <div class="stage"><iframe src="/?loomy=1" title="Loomy implementation"></iframe></div>
+      </figure>
+    </main>
+  </body>
+</html>
