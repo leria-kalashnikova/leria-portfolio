@@ -2,7 +2,7 @@
 
 Faithful implementation of the supplied Figma frame, prepared as a Vite + React project for GitHub Pages.
 
-The Rho and Loomy project cards open responsive case-study popups. Each Loomy visual (logo, hero, and three phone previews) is a complete image exported from its Figma node.
+The Rho and Loomy project cards open responsive case-study popups. Each Loomy visual (logo, hero, and three phone previews) is a complete image exported from its Figma node. The Loomy Home Screen also has a separate source-exported orange phone frame layered above it, as requested.
 
 ## Image export status
 

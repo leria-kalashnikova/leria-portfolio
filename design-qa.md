@@ -181,4 +181,15 @@ No actionable P0/P1/P2 visual or interaction differences remain. The fixed Close
 - [ ] Export and replace the eight remaining 1× assets listed in `README.md`.
 - [ ] Re-run a normalized visual comparison after those replacements.
 
+## User-requested refinement QA (2026-09-20)
+
+- Source visual truth: saved Figma Loomy full-frame export `docs/qa/loomy-figma-reference.png` (1440 × 2716 px), plus the user's explicit overrides for homepage card radius, Coming soon label, LinkedIn link, and layered Home Screen phone image. The live Figma MCP context could not be refreshed because the account's Starter-plan tool limit is reached.
+- Implementation evidence: live preview `http://127.0.0.1:4176/`, `http://127.0.0.1:4176/?loomy=1`, and combined source/implementation view `http://127.0.0.1:4176/qa-loomy-comparison.html`. Browser screenshots were inspected inline but are not persisted as local files. The combined comparison uses a 1440 × 2716 CSS px implementation iframe against the 1440 × 2716 source, both scaled to 0.42 within a 1280 × 720 browser viewport.
+- State: homepage default and Cozmat hovered; Loomy popup top and phone-row scroll position.
+- Full-view comparison: Loomy logo/title, metadata, hero, TLDR start, background, and copy remain aligned. The extra Home Screen frame does not change the row's 281 × 554 slot or captions.
+- Focused phone-row comparison: the orange Home Screen frame, position, and relative size visually match the saved source at equal scale. The added image is a repository-local Figma-exported orange phone frame, not a CSS reconstruction.
+- Required fidelity surfaces: typography remains the same except the intentional smaller regular Inter Coming soon label; card radii intentionally change from the older 24 px reference to 42 px; colors and copy are otherwise unchanged; the Home Screen gains a real overlay image without new crop or visible double border.
+- Functional checks: the footer LinkedIn element is now an accessible link to the requested URL. Production and Sites builds passed; all four Sites static-worker tests passed.
+- Open gap: the eight previously documented 1× homepage/Loomy PNGs still need genuine 4× Figma re-exports. This remains an actionable image-quality limitation from the preceding QA pass; no interpolated files were substituted. A current live Figma source capture and persistent browser screenshot file are also unavailable.
+
 final result: blocked

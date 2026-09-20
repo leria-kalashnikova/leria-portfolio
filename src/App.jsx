@@ -252,7 +252,12 @@ function LoomyCaseStudy({ onClose }) {
         <section className="rho-screens loomy-screens" aria-label="Loomy application screens">
           {loomyScreens.map((item) => (
             <figure className="rho-phone loomy-phone" key={item.name}>
-              <img className="loomy-phone-image" src={item.image} alt={`${item.name} interface`} />
+              <div className="loomy-phone-composition">
+                <img className="loomy-phone-image" src={item.image} alt={`${item.name} interface`} />
+                {item.name === "Home Screen" && (
+                  <img className="loomy-phone-frame" src="assets/rho-case/iphone-orange.png" alt="" aria-hidden="true" />
+                )}
+              </div>
               <figcaption>{item.name}</figcaption>
             </figure>
           ))}
@@ -320,7 +325,7 @@ export function App() {
 
         <footer id="contact">
           <a href="mailto:leria.kalashnikova@gmail.com">leria.kalashnikova@gmail.com</a>
-          <span>LinkedIn</span>
+          <a href="https://www.linkedin.com/in/leriia-kalashnikova-1121a8192/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <span>London</span>
         </footer>
       </div>
