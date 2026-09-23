@@ -192,4 +192,25 @@ No actionable P0/P1/P2 visual or interaction differences remain. The fixed Close
 - Functional checks: the footer LinkedIn element is now an accessible link to the requested URL. Production and Sites builds passed; all four Sites static-worker tests passed.
 - Open gap: the eight previously documented 1× homepage/Loomy PNGs still need genuine 4× Figma re-exports. This remains an actionable image-quality limitation from the preceding QA pass; no interpolated files were substituted. A current live Figma source capture and persistent browser screenshot file are also unavailable.
 
+Historical result for the 2026-09-20 scope: blocked.
+
+## Loomy and Rho metadata update QA (2026-09-23)
+
+- Source visual truth: live Figma nodes `859:14918` (Loomy Main, 1440 × 2716) and `851:14271` (Rho Main). The current Loomy source shows the Motion tag, Role, Time, and a 119.664 × 40 App Store badge; the prior Rate field is absent. The current Rho source orders metadata as Role → Time → Scope.
+- Implementation evidence: local browser previews at `http://127.0.0.1:4176/?loomy=1` and `http://127.0.0.1:4176/?rho=1`. Loomy was rendered at a 1440 px desktop viewport and at 390 × 844 mobile. Browser accessibility output confirmed the exact current labels, order, and requested App Store URL. The browser console reported no warnings or errors.
+- Full-view evidence: the current live Figma frames and rendered case pages were both opened and inspected. The Loomy badge occupies the right-hand metadata slot without changing the hero start or case-page rhythm; the Rho metadata reordering also leaves the hero and surrounding spacing unchanged.
+- Focused evidence: the Loomy badge uses the four exact source SVG layers supplied by Figma at the source dimensions. Keyboard focus moves between Close and the App Store link; the link opens in a new tab and carries an accessible label. At mobile width, the badge remains visible below Role and Time without overlap.
+- Required fidelity surfaces: Inter typography, existing sizes and line heights, 40 px desktop margins, `#fcfcfb` background, imagery, hero dimensions, TLDR copy, and screen captions are unchanged. Copy/content and metadata order match the current Figma context. No new raster assets or image-quality regressions were introduced.
+- Functional verification: production build passed. Sites packaging passed and all four static-worker tests passed.
+- Formal comparison limitation: Figma MCP screenshot/export calls reached the account's Starter-plan limit. A live Figma browser view and implementation captures were inspected, but the browser security policy prevented assembling them into one normalized combined comparison artifact. Under the strict design-QA gate, this prevents a formal pass even though no scoped mismatch was found.
+
+**Implementation checklist**
+
+- [x] Add Motion to Loomy tags and remove Rate.
+- [x] Add the exact App Store badge and requested destination URL.
+- [x] Change Loomy metadata order to Role → Time → App Store.
+- [x] Change Rho metadata order to Role → Time → Scope.
+- [x] Verify desktop, mobile, focus order, and console state.
+- [ ] Re-run a normalized combined source/implementation capture when Figma MCP access is available.
+
 final result: blocked

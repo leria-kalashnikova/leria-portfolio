@@ -76,6 +76,17 @@ function Detail({ label, children, className = "" }) {
   );
 }
 
+function AppStoreBadge() {
+  return (
+    <span className="app-store-badge" aria-hidden="true">
+      <img className="app-store-badge-base" src="assets/loomy-case/app-store-badge-base.svg" alt="" />
+      <img className="app-store-badge-icon" src="assets/loomy-case/app-store-badge-icon.svg" alt="" />
+      <img className="app-store-badge-wordmark" src="assets/loomy-case/app-store-badge-wordmark.svg" alt="" />
+      <img className="app-store-badge-caption" src="assets/loomy-case/app-store-badge-caption.svg" alt="" />
+    </span>
+  );
+}
+
 function PhoneScreen({ item }) {
   return (
     <figure className={`rho-phone ${item.className}`}>
@@ -133,8 +144,8 @@ function RhoCaseStudy({ onClose }) {
           <Detail className="rho-tags" label="Tags">0 → 1/N, UI/UX Design, Art Direction, Prototyping, iOS</Detail>
           <div className="rho-meta-secondary">
             <Detail label="Role">Design Lead</Detail>
-            <Detail label="Scope">Art Direction, UI/UX, etc.</Detail>
             <Detail label="Time">2025 — 2026</Detail>
+            <Detail label="Scope">Art Direction, UI/UX, etc.</Detail>
           </div>
         </section>
 
@@ -180,6 +191,7 @@ const loomyScreens = [
 function LoomyCaseStudy({ onClose }) {
   const overlayRef = useRef(null);
   const closeRef = useRef(null);
+  const appStoreRef = useRef(null);
 
   useEffect(() => {
     overlayRef.current?.scrollTo(0, 0);
@@ -201,7 +213,16 @@ function LoomyCaseStudy({ onClose }) {
       onKeyDown={(event) => {
         if (event.key === "Tab") {
           event.preventDefault();
-          closeRef.current?.focus();
+          const movingBackward = event.shiftKey;
+          if (document.activeElement === closeRef.current && movingBackward) {
+            appStoreRef.current?.focus();
+          } else if (document.activeElement === appStoreRef.current && !movingBackward) {
+            closeRef.current?.focus();
+          } else if (document.activeElement === closeRef.current) {
+            appStoreRef.current?.focus();
+          } else {
+            closeRef.current?.focus();
+          }
         }
       }}
     >
@@ -219,11 +240,20 @@ function LoomyCaseStudy({ onClose }) {
         </header>
 
         <section className="rho-case-meta" aria-label="Project details">
-          <Detail className="rho-tags" label="Tags">UI/UX Design, Art Direction, Prototyping, iOS, Web</Detail>
+          <Detail className="rho-tags" label="Tags">UI/UX Design, Art Direction, Prototyping, iOS, Web, Motion</Detail>
           <div className="rho-meta-secondary">
             <Detail label="Role">Design Lead</Detail>
-            <Detail className="loomy-rate" label="Rate">4.9/5 (8K ratings)</Detail>
             <Detail label="Time">2022 — 2025</Detail>
+            <a
+              className="loomy-app-store-link"
+              href="https://apps.apple.com/gb/app/loomy-fonts-captions-stickers/id1512686487"
+              target="_blank"
+              rel="noopener noreferrer"
+              ref={appStoreRef}
+              aria-label="Download Loomy on the App Store"
+            >
+              <AppStoreBadge />
+            </a>
           </div>
         </section>
 

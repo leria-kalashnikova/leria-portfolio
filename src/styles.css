@@ -661,11 +661,34 @@ footer {
 
 .loomy-case-page { min-height: 2716px; }
 
-.loomy-rate .rho-detail-value {
-  color: #000;
-  font-size: 18px;
-  line-height: 26px;
-  letter-spacing: 0.1px;
+.loomy-app-store-link {
+  display: block;
+  flex: 0 0 119.664px;
+  width: 119.664px;
+  height: 40px;
+  border-radius: 7px;
+}
+
+.loomy-app-store-link:focus-visible {
+  outline: 2px solid #1d1f27;
+  outline-offset: 5px;
+}
+
+.app-store-badge {
+  position: relative;
+  display: block;
+  width: 119.664px;
+  height: 40px;
+}
+
+.app-store-badge img { position: absolute; display: block; }
+.app-store-badge-base { inset: 0 auto auto 0; }
+.app-store-badge-icon { top: 8.72px; left: 9.97px; }
+.app-store-badge-caption { top: 8.44px; left: 35.67px; }
+.app-store-badge-wordmark { top: 17.87px; left: 34.43px; }
+
+.loomy-app-store-link:hover .app-store-badge {
+  opacity: 0.78;
 }
 
 .loomy-visual { width: min(672px, calc(100% - 48px)); aspect-ratio: 672 / 606; }
